@@ -41,6 +41,7 @@ Monitor_init(m, doRestore) {
 Monitor_activateView(i, d = 0) {
   Local aMonitor, aView, aWndId, detectHidden, m, n, wndId, wndIds
 
+  wndId := 0
   aMonitor := Manager_aMonitor
   If (i = -1)
     i := Monitor_#%aMonitor%_aView_#2
@@ -105,7 +106,11 @@ Monitor_activateView(i, d = 0) {
     Bar_updateView(m, i)
   }
 
-  wndId := View_getActiveWindow(aMonitor, i)
+  ; mserik: 20220907 Call getActiveWindow only if wndId is not valid. Fix for
+  ; focusing wrong window after changing view. Happens mostly with Outlook,
+  ; CODESYS and WezTerm.
+  if Not wndId
+    wndId := View_getActiveWindow(aMonitor, i)
   Manager_winActivate(wndId)
 }
 
