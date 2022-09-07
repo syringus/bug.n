@@ -21,7 +21,7 @@ OnExit, Main_cleanup
 SetBatchLines, -1
 SetTitleMatchMode, 3
 SetTitleMatchMode, fast
-SetWinDelay, 10
+SetWinDelay, 0
 #NoEnv
 #SingleInstance force
 ;#Warn                         ; Enable warnings to assist with detecting common errors.
